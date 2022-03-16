@@ -1,0 +1,87 @@
+<div>
+  <div>
+    <i class="far fa-credit-card fa-3x"></i>
+    <h1> <%= @the_credit_card.card_name %></h1>
+    <table>
+      <tr>
+        <th>
+          <a><%= @the_credit_card.credit_line %></a>
+          <div>Credit line</div>
+        </th>
+        <th>
+          <a><%= @the_credit_card.current_balance %></a>
+          <div>Current Balance</div>
+        </th>
+      </tr>
+      <tr>
+  </div>
+  <div>
+    </table>
+        <table>
+      <tr>
+        <th>
+          <a><%= @the_credit_card.payment_date %></a>
+          <div>Next Payment Date</div>
+        </th>
+        <th>
+          <a><%= @the_credit_card.minimum_payment %></a>
+          <div>Minimum Payment Due</div>
+        </th>
+        <th>
+          <a><%= @the_credit_card.apr %></a>
+          <div>APR</div>
+        </th>
+      </tr>
+      <tr>
+    </table>
+  </div>
+</div>
+<div>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCardModel">Edit Card</button>
+  <a class="btn btn-primary" role="button" href="/delete_credit_card/<%= @the_credit_card.id %>">Delete Card</a>
+  <a class="btn btn-primary" role="button"  href="/credit_card_dashboard">Back to Credit Card Dashboard</a>
+</div>
+<div class="modal fade" id="editCardModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Card</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/modify_credit_card/<%= @the_credit_card.id %>" method="post">
+          <div>
+            <label for="card_name_box">Credit Card Name</label>
+            <input type="text" id="card_name_box" name="query_card_name" value="<%= @the_credit_card.card_name %>">
+          </div>
+          <div>
+            <label for="credit_line_box">Credit Line</label>
+            <input type="text" id="credit_line_box" name="query_credit_line"value="<%= @the_credit_card.credit_line %>">
+          </div>
+          <div>
+            <label for="current_balance_box">Current Balance</label>
+            <input type="text" id="current_balance_box" name="query_current_balance"value="<%= @the_credit_card.current_balance %>">
+          </div>
+          <div>
+            <label for="apr_box">APR</label>
+            <input type="text" id="apr_box" name="query_apr"value="<%= @the_credit_card.apr %>">
+          </div>
+          <div>
+            <label for="payment_date_box">Payment Date</label>
+            <input type="date" id="payment_date_box" name="query_payment_date"value="<%= @the_credit_card.payment_date%>">
+          </div>
+          <div>
+            <label for="minimum_payment_box">Minimum Payment</label>
+            <input type="text" id="minimum_payment_box" name="query_minimum_payment"value="<%= @the_credit_card.minimum_payment%>">
+          </div>
+          <div>
+            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,12 @@ GIT
       sinatra
       tzinfo-data
 
+GIT
+  remote: https://github.com/thomaspark/bootswatch.git
+  revision: 8bca1c51e99ab6f23337c0ad0cd9234c622e7201
+  specs:
+    bootswatch (5.1.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -362,6 +368,7 @@ DEPENDENCIES
   better_errors (= 2.6)
   binding_of_caller
   bootsnap (>= 1.4.2)
+  bootswatch!
   byebug
   capybara
   dotenv-rails

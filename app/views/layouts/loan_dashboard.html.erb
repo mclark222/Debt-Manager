@@ -1,0 +1,240 @@
+<div>
+  <div>
+    <h1>
+      Welcome to your Loan Dashboard <%= @the_user.first_name %>
+    </h1>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <h2>
+      Summary of Current Loans
+    </h2>
+    <table border="1">
+      <tr>
+        <th>
+          Lender
+        </th>
+        <th>
+          Total loan amount
+        </th>
+        <th>
+          Amount Borrowed
+        </th>
+        <th>
+          Amount Remaining
+        </th>
+        <th>
+          Repayment period
+        </th>
+        <th>
+          Apr
+        </th>
+        <th>
+          First payment date
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_current_loans.each do |a_loan| %>
+        <tr>
+          <td>
+            <%= a_loan.lender_name %>
+          </td>
+          <td>
+            <%= number_to_currency(a_loan.total_loan_amount.to_i) %>
+          </td>
+          <td>
+            <%= number_to_currency(a_loan.amount_borrowed.to_i) %>
+          </td>
+          <td><%= number_to_currency(a_loan.total_loan_amount.to_i - a_loan.amount_borrowed.to_i) %></td>
+          <td> <%= a_loan.repayment_period %> years</td>
+          <td>
+            <%= a_loan.apr %>%
+          </td>
+          <td>
+            <%= a_loan.first_payment_date.strftime("%B %d, %Y") %>
+          </td>
+          <td>
+            <a href="/current_loans/<%= a_loan.id %>">
+              Show details
+            </a>
+          </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<hr>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Enter a Current Loan
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter a Loan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/insert_current_loan" method="post">
+            <div>
+              <label for="total_loan_amount_box">Total loan amount</label>
+              <input type="text" id="total_loan_amount_box" name="query_total_loan_amount">
+            </div>
+            <div>
+              <label for="lender_name_box">Lender name</label>
+              <input type="text" id="lender_name_box" name="query_lender_name">
+            </div>
+            <div>
+              <label for="repayment_period_box">Repayment period</label>
+              <input type="text" id="repayment_period_box" name="query_repayment_period">
+            </div>
+            <div>
+              <label for="apr_box">APR</label>
+              <input type="text" id="apr_box" name="query_apr">
+            </div>
+            <div>
+              <label for="loan_start_date_box">Loan start date</label>
+              <input type="date" id="loan_start_date_box" name="query_loan_start_date">
+            </div>
+            <div>
+              <label for="amount_borrowed_box">Amount Borrowed so far</label>
+              <input type="text" id="amount_borrowed_box" name="query_amount_borrowed">
+            </div>
+            <div>
+              <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</hr>
+<hr>
+
+<hr>
+<div>
+  <div>
+    <h2>
+      Loan Comparison Tool
+    </h2>
+    <table border="1">
+      <tr>
+        <th colspan="4">Loan Details</th>
+        <th colspan="3">Repayment Details</th>
+      </tr>
+      <tr>
+        <th>
+          Lender
+        </th>
+        <th>
+          Total Loan Amount
+        </th>
+        <th>
+          Repayment period
+        </th>
+        <th>
+          Apr
+        </th>
+        <th>
+          Total Cost of Loan
+        </th>
+        <th>
+          In School Monthly Payment
+        </th>
+        <th>
+          Post School Monthly Payment
+        </th>
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_comparison_loans.each do |a_loan| %>
+        <tr>
+          <td>
+            <%= a_loan.lender_name %>
+          </td>
+          <td>
+            <%= number_to_currency(a_loan.total_loan_amount.to_i) %>
+          </td>
+          <td>
+            <%= a_loan.repayment_period %> years
+          </td>
+          <td>
+            <%= a_loan.apr %>%
+          </td>
+          <td>
+            <%= number_to_currency(a_loan.loan_total_cost) %>
+          </td>
+          <td>
+            <%= number_to_currency(a_loan.monthly_payments_in_school) %>
+          </td>
+          <td>
+            <%= number_to_currency(a_loan.monthly_payments_after_school) %>
+          </td>
+          <td>
+            <a href="/delete_loan_comparison/<%= a_loan.id %>">
+              Remove
+            </a>
+          </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<hr>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loanComparisonModal">
+    Enter a Loan to Compare
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loanComparisonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter a Loan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/insert_loan_comparison" method="post">
+            <div>
+              <label for="total_loan_amount_box">Total loan amount</label>
+              <input type="text" id="total_loan_amount_box" name="query_total_loan_amount">
+            </div>
+            <div>
+              <label for="lender_name_box">Lender name</label>
+              <input type="text" id="lender_name_box" name="query_lender_name">
+            </div>
+            <div>
+              <label for="repayment_period_box">Repayment period</label>
+              <input type="text" id="repayment_period_box" name="query_repayment_period">
+            </div>
+            <div>
+              <label for="apr_box">APR</label>
+              <input type="text" id="apr_box" name="query_apr">
+            </div>
+            <div>
+              <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</hr>
+<hr>
