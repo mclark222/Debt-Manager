@@ -1,3 +1,4 @@
+<h1 style="color:white">Indent</h1>
 <div>
   <div>
     <h1>
@@ -5,58 +6,61 @@
     </h1>
   </div>
 </div>
-
 <hr>
   <div>
     <h2>
       Summary of Current Cards
     </h2>
-    <table border="1">
-      <tr>
-        <th>
-          Card Name
-        </th>
-        <th>
-          Credit Line
-        </th>
-        <th>
-          Current Balance
-        </th>
-        <th>
-          Payment Date
-        </th>
-        <th>
-          Minimum Payment
-        </th>
-        <th>
-          Apr
-        </th>
-      </tr>
-      <tr>
-        <% @list_of_current_cards.each do |a_card| %>
-          <tr>
-            <td>
-              <%= a_card.card_name %>
-            </td>
-            <td>
-              <%= number_to_currency(a_card.credit_line.to_i) %>
-            </td>
-            <td>
-              <%= number_to_currency(a_card.current_balance.to_i) %>
-            </td>
-            <td><%= a_card.payment_date.strftime("%B %d, %Y") %></td>
-            <td><%= number_to_currency(a_card.minimum_payment.to_i) %></td>
-            <td>
-              <%= a_card.apr %>%
-            </td>
-            <td>
-              <a href="/credit_cards/<%= a_card.id %>">
-                Show details
-              </a>
-            </td>
-          </tr>
-        <% end %>
-      </tr>
+    <table border="1" class = "table">
+      <thead class="thead-dark">
+        <tr>
+          <th>
+            Card Name
+          </th>
+          <th>
+            Credit Line
+          </th>
+          <th>
+            Current Balance
+          </th>
+          <th>
+            Payment Date
+          </th>
+          <th>
+            Minimum Payment
+          </th>
+          <th>
+            Apr
+          </th>
+          <th>
+          </th>
+        </tr>
+        <tr>
+          <% @list_of_current_cards.each do |a_card| %>
+            <tr>
+              <td>
+                <%= a_card.card_name %>
+              </td>
+              <td>
+                <%= number_to_currency(a_card.credit_line.to_i) %>
+              </td>
+              <td>
+                <%= number_to_currency(a_card.current_balance.to_i) %>
+              </td>
+              <td><%= a_card.payment_date.strftime("%B %d, %Y") %></td>
+              <td><%= number_to_currency(a_card.minimum_payment.to_i) %></td>
+              <td>
+                <%= a_card.apr %>%
+              </td>
+              <td>
+                <a href="/credit_cards/<%= a_card.id %>">
+                  Show details
+                </a>
+              </td>
+            </tr>
+          <% end %>
+        </tr>
+      </thead>
     </table>
   </div>
 <hr>
@@ -102,4 +106,33 @@
       </div>
     </div>
   </div>
+</hr>
+
+<hr>
+<h2> Credit Card Resources </h2>
+<div class = "container">
+  <div class = "row justify-content-around">
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Find the Right Card for You</div>
+      <div class="card-body">
+        <ul>
+          <li><a href="https://www.nerdwallet.com/compare/credit-cards">Credit Card Comparison Tool</a></li>
+          <li><a href="https://www.nerdwallet.com/best/credit-cards/college-student">Credit Cards for Students</a></li>
+          <li><a href="https://www.creditkarma.com/credit-cards/i/best-credit-card-for-international-students">Credit Cards for International Students</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Educational Materials</div>
+      <div class="card-body">
+        <ul>
+          <li><a href="https://www.sofi.com/learn/content/how-to-use-credit-card-responsibly/">Using your credit card responsibly</a></li>
+          <li><a href="https://www.sofi.com/learn/content/how-to-build-credit/">Building your credit score</a></li>
+          <li><a href="https://www.sofi.com/learn/content/credit-card-debt-elimination/">Credit card debt elimination plan</a></li>
+        </ul>      
+      </div>
+    </div>
+  </div>
+</div>
 </hr>

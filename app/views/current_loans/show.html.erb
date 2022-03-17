@@ -1,49 +1,55 @@
-<div>
-  <div>
-    <i class="fas fa-landmark fa-3x"></i>
-    <h1> <%= @the_loan.lender_name %></h1>
-    <table>
-      <tr>
-        <th>
-          <a><%= @the_loan.total_loan_amount %></a>
-          <div>Total Loan Amount</div>
-        </th>
-        <th>
-          <a><%= @the_loan.amount_borrowed %></a>
-          <div>Amount Borrowed</div>
-        </th>
-        <th>
-          <a><%= @the_loan.amount_remaining %></a>
-          <div>Amount Left to Borrow</div>
-        </th>
-      </tr>
-      <tr>
-  </div>
-  <div>
-    </table>
-        <table>
-      <tr>
-        <th>
+<h1 style = "color:white">Indent</h1>
+<i class="fas fa-landmark fa-3x"></i>
+<h1> <%= @the_loan.lender_name %></h1>
+
+<div class = "container">
+  <div class = "row justify-content-around">
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Total Loan Amount</div>
+      <div class="card-body text-center">
+          <a><%= number_to_currency(@the_loan.total_loan_amount.to_i) %></a>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Amount Borrowed</div>
+      <div class="card-body text-center">
+          <a><%= number_to_currency(@the_loan.amount_borrowed.to_i) %></a>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Amount Left to Borrow</div>
+      <div class="card-body text-center">
+          <a><%= number_to_currency(@the_loan.amount_remaining.to_i) %></a>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">First Payment Date</div>
+      <div class="card-body text-center">
           <a><%= @the_loan.first_payment_date %></a>
-          <div>First Payment Date</div>
-        </th>
-        <th>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Repayment Period</div>
+      <div class="card-body text-center">
           <a><%= @the_loan.repayment_period %></a>
-          <div>Repayment Period</div>
-        </th>
-        <th>
-          <a><%= @the_loan.apr %></a>
-          <div>APR</div>
-        </th>
-      </tr>
-      <tr>
-    </table>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">APR</div>
+      <div class="card-body text-center">
+          <a><%= @the_loan.apr %>%</a>
+      </div>
+    </div>
   </div>
 </div>
+
+
 <div>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editLoanModel">Edit Card</button>
-  <a class="btn btn-primary" role="button" href="/delete_current_loan/<%= @the_loan.id %>">Delete Card</a>
-  <a class="btn btn-primary" role="button"  href="/loan_dashboard">Back to Credit Card Dashboard</a>
+  <div class="row justify-content-around">
+    <button type="button"  style = "max-width: 20rem" class="btn btn-primary" data-toggle="modal" data-target="#editLoanModel">Edit Loan</button>
+    <a class="btn btn-primary" style = "max-width: 20rem" role="button" href="/delete_current_loan/<%= @the_loan.id %>">Delete Loan</a>
+    <a class="btn btn-primary" style = "max-width: 20rem" role="button"  href="/loan_dashboard">Back to Loan Dashboard</a>
+  </div>
 </div>
 <div class="modal fade" id="editLoanModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

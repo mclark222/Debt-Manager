@@ -1,45 +1,49 @@
-<div>
-  <div>
-    <i class="far fa-credit-card fa-3x"></i>
-    <h1> <%= @the_credit_card.card_name %></h1>
-    <table>
-      <tr>
-        <th>
-          <a><%= @the_credit_card.credit_line %></a>
-          <div>Credit line</div>
-        </th>
-        <th>
-          <a><%= @the_credit_card.current_balance %></a>
-          <div>Current Balance</div>
-        </th>
-      </tr>
-      <tr>
-  </div>
-  <div>
-    </table>
-        <table>
-      <tr>
-        <th>
+<h1 style = "color:white">Indent</h1>
+<i class="far fa-credit-card fa-3x"></i>
+<h1> <%= @the_credit_card.card_name %></h1>
+
+<div class = "container">
+  <div class = "row justify-content-around">
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Credit Line</div>
+      <div class="card-body text-center">
+          <a><%= number_to_currency(@the_credit_card.credit_line.to_i) %></a>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Current Balance</div>
+      <div class="card-body text-center">
+          <a><%= number_to_currency(@the_credit_card.current_balance.to_i) %></a>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Next Payment Date</div>
+      <div class="card-body text-center">
           <a><%= @the_credit_card.payment_date %></a>
-          <div>Next Payment Date</div>
-        </th>
-        <th>
-          <a><%= @the_credit_card.minimum_payment %></a>
-          <div>Minimum Payment Due</div>
-        </th>
-        <th>
-          <a><%= @the_credit_card.apr %></a>
-          <div>APR</div>
-        </th>
-      </tr>
-      <tr>
-    </table>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Minimum Payment Due</div>
+      <div class="card-body text-center">
+          <a><%= number_to_currency(@the_credit_card.minimum_payment.to_i) %></a>
+      </div>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">APR</div>
+      <div class="card-body text-center">
+          <a><%= @the_credit_card.apr %>%</a>
+      </div>
+    </div>
   </div>
 </div>
+
+
 <div>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCardModel">Edit Card</button>
-  <a class="btn btn-primary" role="button" href="/delete_credit_card/<%= @the_credit_card.id %>">Delete Card</a>
-  <a class="btn btn-primary" role="button"  href="/credit_card_dashboard">Back to Credit Card Dashboard</a>
+  <div class="row justify-content-around">
+    <button type="button" style = "max-width: 20rem" class="btn btn-primary" data-toggle="modal" data-target="#editCardModel">Edit Card</button>
+    <a class="btn btn-primary text-middle" style = "max-width: 20rem" role="button" href="/delete_credit_card/<%= @the_credit_card.id %>">Delete Card</a>
+    <a class="btn btn-primary" style = "max-width: 20rem" role="button"  href="/credit_card_dashboard">Back to Credit Card Dashboard</a>
+  </div>
 </div>
 <div class="modal fade" id="editCardModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -85,3 +89,4 @@
     </div>
   </div>
 </div>
+

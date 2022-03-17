@@ -1,4 +1,4 @@
-
+<h1 style="color:white">Indent</h1>
 <h1>Hello <%= @the_user.first_name%>, welcome to the Debt Manager!</h1>
 <h5>This tool can be used to manage your debt through your MBA. Hooray!</h5>
 <hr>
@@ -6,50 +6,56 @@
     <h2>
       Summary of Current Debt
     </h2>
-    <table border="1" class = table-active>
-      <tr>
-        <th>
-          Type of Debt
-        </th>
-        <th>
-          Description
-        </th>
-        <th>
-          Total Amount
-        </th>
-        <th>
-          Next Payment Date 
-        </th>
-        <th>
-          Amount Due
-        </th>
-      </tr>
-      <tr>
-        <% @list_of_current_cards.each do |a_card| %>
-          <tr>
-            <td>Credit Card</td>
-            <td><%= a_card.card_name %></td>
-            <td><%= number_to_currency(a_card.current_balance.to_i) %></td>
-            <td><%= a_card.payment_date.strftime("%B %d, %Y") %></td>
-            <td><%= number_to_currency(a_card.minimum_payment.to_i) %></td>
-            <td><a href="/credit_cards/<%= a_card.id %>">Show details</a></td>
-          </tr>
-        <% end %>
-      </tr>
-      <tr>
-        <% @list_of_current_loans.each do |a_loan| %>
-          <tr>
-            <td>Loan</td>
-            <td><%= a_loan.lender_name %></td>
-            <td><%= number_to_currency(a_loan.total_loan_amount.to_i) %></td>
-            <td><%= a_loan.first_payment_date.strftime("%B %d, %Y") %></td>
-            <td><%= number_to_currency(a_loan.monthly_payments_after_school.to_i) %></td>
-            <td><a href="/current_loans/<%= a_loan.id %>">Show details</a></td>
-          </tr>
-        <% end %>
-      </tr>
+    <table border="1" class = "table">
+      <thead class="thead-dark">
+        <tr>
+          <th>
+            Type of Debt
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Total Amount
+          </th>
+          <th>
+            Next Payment Date 
+          </th>
+          <th>
+            Amount Due
+          </th>
+          <th>
+          </th>
+        </tr>
+        <tr>
+          <% @list_of_current_cards.each do |a_card| %>
+            <tr>
+              <td>Credit Card</td>
+              <td><%= a_card.card_name %></td>
+              <td><%= number_to_currency(a_card.current_balance.to_i) %></td>
+              <td><%= a_card.payment_date.strftime("%B %d, %Y") %></td>
+              <td><%= number_to_currency(a_card.minimum_payment.to_i) %></td>
+              <td><a href="/credit_cards/<%= a_card.id %>">Show details</a></td>
+            </tr>
+          <% end %>
+        </tr>
+        <tr>
+          <% @list_of_current_loans.each do |a_loan| %>
+            <tr>
+              <td>Loan</td>
+              <td><%= a_loan.lender_name %></td>
+              <td><%= number_to_currency(a_loan.total_loan_amount.to_i) %></td>
+              <td><%= a_loan.first_payment_date.strftime("%B %d, %Y") %></td>
+              <td><%= number_to_currency(a_loan.monthly_payments_after_school.to_i) %></td>
+              <td><a href="/current_loans/<%= a_loan.id %>">Show details</a></td>
+            </tr>
+          <% end %>
+        </tr>
+      </thead>
     </table>
   </div>
+</hr>
+<hr>
   <div>
     <a class="btn btn-primary" role="button"  href="/loan_dashboard">Go to Loan Dashboard</a>
     <a class="btn btn-primary" role="button"  href="/credit_card_dashboard">Go to Credit Card Dashboard</a>

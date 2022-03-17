@@ -27,7 +27,7 @@ class CurrentLoansController < ApplicationController
     the_current_loan.loan_start_date = params.fetch("query_loan_start_date")
     the_current_loan.amount_borrowed = params.fetch("query_amount_borrowed")
 
-    the_current_loan.loan_total_cost = (the_current_loan.total_loan_amount.to_i * ((1 + (the_current_loan.apr.to_i/100)) ** the_current_loan.repayment_period.to_i))
+    the_current_loan.loan_total_cost = the_current_loan.total_loan_amount.to_i + (the_current_loan.total_loan_amount.to_i * ((the_current_loan.apr.to_i/100) ** the_current_loan.repayment_period.to_i))
     the_current_loan.monthly_payments_after_school = the_current_loan.total_loan_amount.to_i / the_current_loan.repayment_period.to_i / 12
     the_current_loan.monthly_payments_in_school = 0
 
@@ -51,13 +51,7 @@ class CurrentLoansController < ApplicationController
     the_current_loan.lender_name = params.fetch("query_lender_name")
     the_current_loan.repayment_period = params.fetch("query_repayment_period")
     the_current_loan.apr = params.fetch("query_apr")
-    the_current_loan.user_id = params.fetch("query_user_id")
     the_current_loan.first_payment_date = params.fetch("query_first_payment_date")
-    the_current_loan.loan_start_date = params.fetch("query_loan_start_date")
-    the_current_loan.amount_borrowed = params.fetch("query_amount_borrowed")
-    the_current_loan.amount_remaining = params.fetch("query_amount_remaining")
-    the_current_loan.next_loan_receiving_date = params.fetch("query_next_loan_receiving_date")
-    the_current_loan.next_loan_receiving_amount = params.fetch("query_next_loan_receiving_amount")
 
     if the_current_loan.valid?
       the_current_loan.save

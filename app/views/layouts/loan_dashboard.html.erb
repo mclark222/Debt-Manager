@@ -1,3 +1,4 @@
+<h1 style="color:white">Indent</h1>
 <div>
   <div>
     <h1>
@@ -12,60 +13,62 @@
     <h2>
       Summary of Current Loans
     </h2>
-    <table border="1">
-      <tr>
-        <th>
-          Lender
-        </th>
-        <th>
-          Total loan amount
-        </th>
-        <th>
-          Amount Borrowed
-        </th>
-        <th>
-          Amount Remaining
-        </th>
-        <th>
-          Repayment period
-        </th>
-        <th>
-          Apr
-        </th>
-        <th>
-          First payment date
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_current_loans.each do |a_loan| %>
+    <table border="1" class = "table">
+      <thead class="thead-dark text-center mb-0">
         <tr>
-          <td>
-            <%= a_loan.lender_name %>
-          </td>
-          <td>
-            <%= number_to_currency(a_loan.total_loan_amount.to_i) %>
-          </td>
-          <td>
-            <%= number_to_currency(a_loan.amount_borrowed.to_i) %>
-          </td>
-          <td><%= number_to_currency(a_loan.total_loan_amount.to_i - a_loan.amount_borrowed.to_i) %></td>
-          <td> <%= a_loan.repayment_period %> years</td>
-          <td>
-            <%= a_loan.apr %>%
-          </td>
-          <td>
-            <%= a_loan.first_payment_date.strftime("%B %d, %Y") %>
-          </td>
-          <td>
-            <a href="/current_loans/<%= a_loan.id %>">
-              Show details
-            </a>
-          </td>
-      </tr>
-      <% end %>
+          <th>
+            Lender
+          </th>
+          <th>
+            Total loan amount
+          </th>
+          <th>
+            Amount Borrowed
+          </th>
+          <th>
+            Amount Remaining
+          </th>
+          <th>
+            Repayment period
+          </th>
+          <th>
+            Apr
+          </th>
+          <th>
+            First payment date
+          </th>
+
+          <th>
+          </th>
+        </tr>
+
+        <% @list_of_current_loans.each do |a_loan| %>
+          <tr>
+            <td>
+              <%= a_loan.lender_name %>
+            </td>
+            <td>
+              <%= number_to_currency(a_loan.total_loan_amount.to_i) %>
+            </td>
+            <td>
+              <%= number_to_currency(a_loan.amount_borrowed.to_i) %>
+            </td>
+            <td><%= number_to_currency(a_loan.total_loan_amount.to_i - a_loan.amount_borrowed.to_i) %></td>
+            <td> <%= a_loan.repayment_period %> years</td>
+            <td>
+              <%= a_loan.apr %>%
+            </td>
+            <td>
+              <%= a_loan.first_payment_date.strftime("%B %d, %Y") %>
+            </td>
+            <td>
+              <a href="/current_loans/<%= a_loan.id %>">
+                Show details
+              </a>
+            </td>
+        </tr>
+        <% end %>
+      </thead>
     </table>
   </div>
 </div>
@@ -121,7 +124,7 @@
     </div>
   </div>
 </hr>
-<hr>
+
 
 <hr>
 <div>
@@ -129,67 +132,69 @@
     <h2>
       Loan Comparison Tool
     </h2>
-    <table border="1">
-      <tr>
-        <th colspan="4">Loan Details</th>
-        <th colspan="3">Repayment Details</th>
-      </tr>
-      <tr>
-        <th>
-          Lender
-        </th>
-        <th>
-          Total Loan Amount
-        </th>
-        <th>
-          Repayment period
-        </th>
-        <th>
-          Apr
-        </th>
-        <th>
-          Total Cost of Loan
-        </th>
-        <th>
-          In School Monthly Payment
-        </th>
-        <th>
-          Post School Monthly Payment
-        </th>
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_comparison_loans.each do |a_loan| %>
+    <table border="1" class = "table text-center">
+      <thead class="thead-dark text-center">
         <tr>
-          <td>
-            <%= a_loan.lender_name %>
-          </td>
-          <td>
-            <%= number_to_currency(a_loan.total_loan_amount.to_i) %>
-          </td>
-          <td>
-            <%= a_loan.repayment_period %> years
-          </td>
-          <td>
-            <%= a_loan.apr %>%
-          </td>
-          <td>
-            <%= number_to_currency(a_loan.loan_total_cost) %>
-          </td>
-          <td>
-            <%= number_to_currency(a_loan.monthly_payments_in_school) %>
-          </td>
-          <td>
-            <%= number_to_currency(a_loan.monthly_payments_after_school) %>
-          </td>
-          <td>
-            <a href="/delete_loan_comparison/<%= a_loan.id %>">
-              Remove
-            </a>
-          </td>
-      </tr>
-      <% end %>
+          <th colspan="4">Loan Details</th>
+          <th colspan="4">Repayment Details</th>
+        </tr>
+        <tr>
+          <th>
+            Lender
+          </th>
+          <th>
+            Total Loan Amount
+          </th>
+          <th>
+            Repayment period
+          </th>
+          <th>
+            Apr
+          </th>
+          <th>
+            Total Cost of Loan
+          </th>
+          <th>
+            In School Monthly Payment
+          </th>
+          <th>
+            Post School Monthly Payment
+          </th>
+          <th>
+          </th>
+        </tr>
+
+        <% @list_of_comparison_loans.each do |a_loan| %>
+          <tr>
+            <td>
+              <%= a_loan.lender_name %>
+            </td>
+            <td>
+              <%= number_to_currency(a_loan.total_loan_amount.to_i) %>
+            </td>
+            <td>
+              <%= a_loan.repayment_period %> years
+            </td>
+            <td>
+              <%= a_loan.apr %>%
+            </td>
+            <td>
+              <%= number_to_currency(a_loan.loan_total_cost) %>
+            </td>
+            <td>
+              <%= number_to_currency(a_loan.monthly_payments_in_school) %>
+            </td>
+            <td>
+              <%= number_to_currency(a_loan.monthly_payments_after_school) %>
+            </td>
+            <td>
+              <a href="/delete_loan_comparison/<%= a_loan.id %>">
+                Remove
+              </a>
+            </td>
+        </tr>
+        <% end %>
+      </thead>
     </table>
   </div>
 </div>
@@ -238,3 +243,33 @@
   </div>
 </hr>
 <hr>
+
+
+
+<h2> Loan Resources </h2>
+<div class = "container">
+  <div class = "row justify-content-around">
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Lender Options</div>
+      <div class="card-body">
+        <ul>
+          <li><a href="https://studentaid.gov/understand-aid/types/loans">Federal Loans</a></li>
+          <li><a href="https://joinjuno.com/">Juno</a></li>
+          <li><a href="https://www.sofi.com/private-student-loans/">SoFi</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">Educational Materials</div>
+      <div class="card-body">
+        <ul>
+          <li><a href="https://www.sofi.com/blog/student-loan-faq-whats-difference-federal-loan-consolidation-private-consolidation-loan/">Federal vs. Private Loans</a></li>
+          <li><a href="https://www.sofi.com/student-loans-payoff-calculator/">Loan Payoff Calculator</a></li>
+          <li><a href="https://www.sofi.com/student-loan-refinancing-calculator/">Loan Refinancing Calculator</a></li>
+          <li><a href="https://www.sofi.com/consolidate-student-loans-vs-refinance/">Consolidate vs. Refinance</a></li>
+          <li><a href="https://www.sofi.com/fixed-vs-variable-rate-loans/">Fixed vs. Variable Rate</a></li>
+        </ul>      </div>
+    </div>
+  </div>
+</div>

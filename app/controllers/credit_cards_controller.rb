@@ -44,8 +44,6 @@ class CreditCardsController < ApplicationController
     the_credit_card.current_balance = params.fetch("query_current_balance")
     the_credit_card.card_name = params.fetch("query_card_name")
     the_credit_card.apr = params.fetch("query_apr")
-    the_credit_card.user_id = params.fetch("query_user_id")
-    the_credit_card.permanent_credit_card = params.fetch("query_permanent_credit_card", false)
     the_credit_card.payment_date = params.fetch("query_payment_date")
     the_credit_card.minimum_payment = params.fetch("query_minimum_payment")
 

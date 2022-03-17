@@ -41,7 +41,6 @@ class LoanComparisonsController < ApplicationController
     the_id = params.fetch("path_id")
     the_loan_comparison = LoanComparison.where({ :id => the_id }).at(0)
 
-    the_loan_comparison.user_id = params.fetch("query_user_id")
     the_loan_comparison.total_loan_amount = params.fetch("query_total_loan_amount")
     the_loan_comparison.lender_name = params.fetch("query_lender_name")
     the_loan_comparison.repayment_period = params.fetch("query_repayment_period")
